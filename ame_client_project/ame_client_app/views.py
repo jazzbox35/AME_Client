@@ -1,119 +1,93 @@
-#   Function:     Add and query level 1 propositions with the AbsoluteMode Engine (absolutemode.agiengine.online)
+#   Function:     \This is a Django program for processing all REST transactions on the AME
 #   Input:        User propositions and associated keywords 
-#   Output:       Server evaluation of proposition and submission of a case for training
+#   Output:       Server evaluation of proposition and submission of a case for training in batch mode.
 
 import requests
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import logging
-
-ame_api_key = '18574'
-ame_node = 'part2'
+from ame_client_app.config import *
 
 logging.basicConfig(filename="ame_client_app.log",filemode='a',format='%(asctime)s:%(levelname)s:%(message)s',level=logging.INFO)
 
 def index(request):
-    # Submit a transaction to the server to create a new case upon invocation
+    # Display home screen
+    data = {}
+    next_action = 'display_home'
+    return render(request, "ame_client_app/home.html", {"data": data, "next_action": next_action})
 
-    api_url = 'https://' + ame_node + '.agiengine.online/createcase'
+def CreateNewCase(request):
+    # Mark case for training -- but no further updates allowed
+    api_url = 'https://' + AME_NODE + '.agiengine.online/createcase'
     headers = {
-        'api-key':  ame_api_key
-    }
+          'api-key':  AME_API_KEY
+      }
     data = {}
     try:
         response = requests.put(api_url, headers=headers, json=data)
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
-    logging.info("Create case>" + str(data) + " status>" + str(response.status_code))
-    
-    next_action = 'input_terms'
-    return render(request, "ame_client_app/home.html", {"data": data, "next_action": next_action})
+    logging.info("create case>" + str(data) + " status>" + str(response.status_code))
+    return JsonResponse(data)
 
-def CreateL0(request):
-    # Create level 0, system 1 judgment(s) and post to the server
+def TrainCase(request):
+    # Mark case for training -- but no further updates allowed
     case = request.GET.get('case')
-    proposition = request.GET.get('L0value')
-    appearance = request.GET.get('L0appear')
-    api_url = 'https://' + ame_node + '.agiengine.online/sys1-proposition'
+    api_url = 'https://' + AME_NODE + '.agiengine.online/traincase'
     headers = {
-          'api-key':  ame_api_key
+          'api-key':  AME_API_KEY
       }
-    if len(appearance) == 0:
-        appearance = "NIL"
+    #appearance =  request.GET.get('appearance')
+    data = {
+      "case": int(case),
+    }
+    
+    try:
+        response = requests.put(api_url, headers=headers, json=data)
+    except:
+        return HttpResponse("Cannot communicate with AME server")
+    data = response.json()
+    logging.info("train case>" + str(data) + " status>" + str(response.status_code))
+    return JsonResponse(data)
+
+def AddProposition(request):
+    
+    case = request.GET.get('case')
+    proposition = request.GET.get('proposition')
+    appearance = request.GET.get('appearance')
+    level = request.GET.get('level')
+    system = request.GET.get('system')
+    #desired = request.GET.get('L0appear')
+
+    api_url = 'https://' + AME_NODE + '.agiengine.online/sys' + system + '-proposition'
+    headers = {
+          'api-key':  AME_API_KEY
+      }
+    
     data = {
       "case": int(case),
       "proposition" :  proposition,
       "appearance"  :  appearance,
       "essence"     : "",
-      "level"       : 0
+      "level"       : level
     }
+    logging.info(data)
     try:
         response = requests.put(api_url, headers=headers, json=data)
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
-    logging.info("L0 proposition>" + str(data) + " status>" + str(response.status_code))
+    logging.info("proposition>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
-def CreateL1(request):
-    # Create level 1, system 1 judgment(s) and post to the server
-    case = request.GET.get('case')
-    proposition = request.GET.get('L1value')
-    api_url = 'https://' + ame_node + '.agiengine.online/sys1-proposition'
-    headers = {
-          'api-key':  ame_api_key
-      }
-    #appearance =  request.GET.get('appearance')
-    data = {
-      "case": int(case),
-      "proposition" :  proposition,
-      "appearance"  :  "",
-      "essence"     :  "",
-      "level"       :  1
-    }
-    
-    try:
-        response = requests.put(api_url, headers=headers, json=data)
-    except:
-        return HttpResponse("Cannot communicate with AME server")
-    data = response.json()
-    logging.info("L1 S1 proposition>" + str(data) + " status>" + str(response.status_code))
-    return JsonResponse(data)
-
-def CreateL2(request):
-    # Create level 1, system 2 judgment(s) and post to the server
-    case = request.GET.get('case')
-    proposition = request.GET.get('L1value')
-    desired = request.GET.get('L1Desired')
-    api_url = 'https://' + ame_node + '.agiengine.online/sys2-proposition'
-    headers = {
-          'api-key':  ame_api_key
-      }
-    #appearance =  request.GET.get('appearance')
-    data = {
-      "case": int(case),
-      "proposition" :  proposition,
-      "desired"     :  desired,
-      "appearance"  :  "",
-      "essence"     :  "",
-      "level"       :  1
-    }
-    
-    try:
-        response = requests.put(api_url, headers=headers, json=data)
-    except:
-        return HttpResponse("Cannot communicate with AME server")
-    data = response.json()
-    logging.info("L1 S2 proposition>" + str(data) + " status>" + str(response.status_code))
-    return JsonResponse(data)
 
 def CreateL3(request):
     # Create level 1, system 2 judgment(s) and post to the server
     case = request.GET.get('case')
-    api_url = 'https://' + ame_node + '.agiengine.online/sys2-realistic'
+    api_url = 'https://' + AME_NODE + '.agiengine.online/sys2-realistic'
     headers = {
-          'api-key':  ame_api_key
+          'api-key':  AME_API_KEY
       }
     #appearance =  request.GET.get('appearance')
     data = {
@@ -131,9 +105,9 @@ def CreateL3(request):
 def CreateL4(request):
     # Retract the most recent proposition
     case = request.GET.get('case')
-    api_url = 'https://' + ame_node + '.agiengine.online/retract_that'
+    api_url = 'https://' + AME_NODE + '.agiengine.online/retract_that'
     headers = {
-          'api-key':  ame_api_key
+          'api-key':  AME_API_KEY
       }
     #appearance =  request.GET.get('appearance')
     data = {
@@ -148,22 +122,3 @@ def CreateL4(request):
     logging.info("retract that>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
-def CreateL5(request):
-    # Mark case for training -- but no further updates allowed
-    case = request.GET.get('case')
-    api_url = 'https://' + ame_node + '.agiengine.online/traincase'
-    headers = {
-          'api-key':  ame_api_key
-      }
-    #appearance =  request.GET.get('appearance')
-    data = {
-      "case": int(case),
-    }
-    
-    try:
-        response = requests.put(api_url, headers=headers, json=data)
-    except:
-        return HttpResponse("Cannot communicate with AME server")
-    data = response.json()
-    logging.info("train case>" + str(data) + " status>" + str(response.status_code))
-    return JsonResponse(data)

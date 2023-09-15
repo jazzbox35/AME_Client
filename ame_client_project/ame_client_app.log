@@ -105,3 +105,198 @@
 2023-09-13 23:09:07,483:INFO:L1 S2 proposition>{'message': 'To case #26, proposition #2 added', 'info': [[['2023-09-13T16:09:07.475165', 'sys2-proposition-bootstrap', '?'], [[[0], False, False], [[[1, [[3, 2, 1, False], [1, 2, 1, [['?']]]]]], False, False], [[[3, ['?']]], False, False], [False, [], False], [False, False, False], [False, False, False], [False, False, False], [False, [], False], [False, False, False], [False, [], False], [False, False, False], [False, False, False], [False, False, False]]], [['2023-09-13T16:09:05.166111', 'sys1_proposition load', 'This', 'recipe', 'has', 'these', 'ingredients'], [[False, [1], False], [False, [[3, []]], False], [False, [[3, ['This', 'recipe', 'has', 'these', 'ingredients']]], False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, ['spider', 'legs', 'squirrel', 'thigh', 'spices', 'pork', 'rice'], False], [False, False, False], [False, ['tart', 'sugar', 'butter', 'cinnamon', 'sweet', 'crust', 'crumble', 'spice', 'bake', 'juicy', 'aroma', 'fresh', 'apple'], False], [False, False, False], [False, False, False], [False, False, False]]]]} status>200
 2023-09-13 23:09:11,226:INFO:realistic call>{'case': 26, 'decision': 'REALISTIC', 'judgments': [['The recipe is Chinese.', 'OK']], 'info': "[[['2023-09-13T16:09:07.475165', 'sys2-proposition-bootstrap', 'recipe', 'be', 'chinese'], [[[1], [0], [0, 0, 0]], [[], [[3, []]], [[2, [[2, 1, 2, [50, 57, 64]], [2, 1, 2, [50, 57]], [1, 2, Decimal('5.9'), [52, 1, 42]], [1, 2, Decimal('3.9'), [1]], [3, 1, Decimal('1.9'), [1, 25, 64, 50, 68]], [1, 1, Decimal('1.9'), [1]], [2, 1, 2, [50, 57]], [1, 2, Decimal('5.7'), [52, 1, 42]], [1, 2, Decimal('3.7'), [1]], [3, 1, Decimal('1.7'), [1, 25, 64, 50, 68]], [1, 1, Decimal('1.7'), [1]], [2, 1, 2, [50, 58]], [3, 3, 1, [1, 63, 73]], [1, 2, Decimal('5.12'), [1]], [1, 2, Decimal('3.12'), [1]], [1, 2, Decimal('2.4'), [1, 71]], [1, 2, 14, [1]], [2, 1, 2, [50, 58]], [3, 3, 2, [60, 1, 73]], [1, 2, Decimal('3.2'), [1, 53, 65]], [3, 1, Decimal('1.2'), [1, 66, 64]], [1, 1, Decimal('1.2'), [1, 1, 69]], [1, 2, 4, [1]], [1, 1, 5, [1, 1, 32]]]], [1, [[1, 2, 4, [38]], [1, 2, 12, [62]]]], [2, [[1, 2, 4, [2, 40]], [1, 2, Decimal('3.2'), [1, 40, 53, 65, 67]], [3, 1, Decimal('1.2'), [1, 11, 64]], [1, 1, Decimal('1.2'), [2, 1, 40]], [1, 1, 5, [2, 40, 32, 1]]]]]], [[], [[3, ['recipe', 'be', 'chinese']]], [[2, ['default', 'major']], [3, ['?']], [1, ['This', 'recipe', 'has', 'these', 'ingredients']]]], [False, [], False], [False, ['be', 'chinese'], False], [False, False, False], [False, False, False], [False, ['spider', 'legs', 'squirrel', 'thigh', 'spices', 'pork', 'rice'], False], [False, False, False], [False, ['tart', 'sugar', 'butter', 'cinnamon', 'sweet', 'crust', 'crumble', 'spice', 'bake', 'juicy', 'aroma', 'fresh', 'apple'], False], [False, False, False], [False, False, False], [False, ['be', 'be_chinese', 'chinese'], False]]], [['2023-09-13T16:09:05.166111', 'sys1_proposition load', 'This', 'recipe', 'has', 'these', 'ingredients'], [[False, [1], False], [False, [[3, []]], False], [False, [[3, ['This', 'recipe', 'has', 'these', 'ingredients']]], False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, ['spider', 'legs', 'squirrel', 'thigh', 'spices', 'pork', 'rice'], False], [False, False, False], [False, ['tart', 'sugar', 'butter', 'cinnamon', 'sweet', 'crust', 'crumble', 'spice', 'bake', 'juicy', 'aroma', 'fresh', 'apple'], False], [False, False, False], [False, False, False], [False, False, False]]]]"} status>200
 2023-09-13 23:09:15,119:INFO:train case>{'message': 'Case #26 marked for training. No further updates allowed for case.', 'info': [[['2023-09-13T16:09:15.110997', 'sys1-entire-case-bootstrap', 'all', 'Xs', 'processed'], [[[0], False, False], [[[1, [[3, 2, 1, False], [1, 2, 1, [['all', 'Xs', 'processed']]]]]], False, False], [[[3, ['all', 'Xs', 'processed']]], False, False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, False, False]]], [['2023-09-13T16:09:07.475165', '2023-09-13T16:09:15.110997', 'recipe', 'be', 'chinese'], [[False, [1], False], [False, [[3, []]], False], [False, [[3, ['recipe', 'be', 'chinese']]], False], [False, [], False], [False, False, False], [False, False, False], [False, False, False], [False, [], False], [False, False, False], [False, [], False], [False, False, False], [False, False, False], [False, False, False]]], [['2023-09-13T16:09:05.166111', '2023-09-13T16:09:15.110997', 'This', 'recipe', 'has', 'these', 'ingredients'], [[False, [1], False], [False, [[3, []]], False], [False, [[3, ['This', 'recipe', 'has', 'these', 'ingredients']]], False], [False, False, False], [False, False, False], [False, False, False], [False, False, False], [False, ['spider', 'legs', 'squirrel', 'thigh', 'spices', 'pork', 'rice'], False], [False, False, False], [False, ['tart', 'sugar', 'butter', 'cinnamon', 'sweet', 'crust', 'crumble', 'spice', 'bake', 'juicy', 'aroma', 'fresh', 'apple'], False], [False, False, False], [False, False, False], [False, False, False]]]]} status>200
+2023-09-14 21:49:27,377:INFO:Create case>{'message': 'Case added', 'case': 28} status>200
+2023-09-14 21:49:27,448:WARNING:Not Found: /favicon.ico
+2023-09-14 22:01:28,466:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 22:18:31,879:ERROR:Internal Server Error: /ame_client_app/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 17, in index
+    return render(request, "ame_client_app/home.html", {"data": data, "next_action": next_action})
+NameError: name 'data' is not defined
+2023-09-14 22:18:33,791:ERROR:Internal Server Error: /ame_client_app/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 17, in index
+    return render(request, "ame_client_app/home.html", {"data": data, "next_action": next_action})
+NameError: name 'data' is not defined
+2023-09-14 22:20:01,917:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 22:36:51,435:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 23:25:33,089:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/urls.py changed, reloading.
+2023-09-14 23:25:43,446:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/urls.py changed, reloading.
+2023-09-14 23:28:35,463:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 23:29:16,970:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 23:29:46,410:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 23:30:00,795:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 23:30:05,135:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/urls.py changed, reloading.
+2023-09-14 23:30:08,478:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 23:31:08,436:ERROR:Internal Server Error: /ame_client_app/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 17, in index
+    return render(request, "ame_client_app/home.html", {"data": data, "next_action": next_action})
+  File "/usr/local/lib/python3.8/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/usr/local/lib/python3.8/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/usr/local/lib/python3.8/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'CreateL0' not found. 'CreateL0' is not a valid view function or pattern name.
+2023-09-14 23:32:54,169:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/urls.py changed, reloading.
+2023-09-14 23:33:01,186:ERROR:Internal Server Error: /ame_client_app/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 17, in index
+    return render(request, "ame_client_app/home.html", {"data": data, "next_action": next_action})
+  File "/usr/local/lib/python3.8/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/usr/local/lib/python3.8/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.8/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/usr/local/lib/python3.8/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/usr/local/lib/python3.8/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'CreateL0' not found. 'CreateL0' is not a valid view function or pattern name.
+2023-09-14 23:35:29,619:ERROR:Internal Server Error: /ame_client_app/CreateNewCase
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 21, in CreateNewCase
+    api_url = 'https://' + AME_NODE + '.agiengine.online/createcase'
+NameError: name 'AME_NODE' is not defined
+2023-09-14 23:37:29,157:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-14 23:37:39,606:INFO:create case>{'message': 'Case added', 'case': 29} status>200
+2023-09-14 23:42:13,137:INFO:create case>{'message': 'Case added', 'case': 30} status>200
+2023-09-14 23:44:53,243:INFO:create case>{'message': 'Case added', 'case': 31} status>200
+2023-09-14 23:48:44,535:INFO:create case>{'message': 'Case added', 'case': 32} status>200
+2023-09-14 23:57:07,560:INFO:create case>{'message': 'Case added', 'case': 33} status>200
+2023-09-15 00:02:35,732:INFO:create case>{'message': 'Case added', 'case': 34} status>200
+2023-09-15 00:02:58,140:INFO:create case>{'message': 'Case added', 'case': 35} status>200
+2023-09-15 00:07:59,385:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/urls.py changed, reloading.
+2023-09-15 00:08:35,847:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 00:11:08,102:INFO:train case>{'message': 'You must add propositions prior to setting the training switch'} status>400
+2023-09-15 00:11:27,399:INFO:create case>{'message': 'Case added', 'case': 36} status>200
+2023-09-15 00:16:00,036:INFO:create case>{'message': 'Case added', 'case': 37} status>200
+2023-09-15 00:19:10,892:INFO:create case>{'message': 'Case added', 'case': 38} status>200
+2023-09-15 00:43:43,675:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/urls.py changed, reloading.
+2023-09-15 00:45:04,302:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 00:45:08,638:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 00:45:40,088:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 00:46:13,582:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 00:54:01,869:ERROR:Internal Server Error: /ame_client_app/AddProposition
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 64, in AddProposition
+    if len(appearance) == 0:
+TypeError: object of type 'NoneType' has no len()
+2023-09-15 00:59:40,928:INFO:create case>{'message': 'Case added', 'case': 39} status>200
+2023-09-15 01:03:14,541:ERROR:Internal Server Error: /ame_client_app/AddProposition
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 64, in AddProposition
+    if len(appearance) == 0:
+TypeError: object of type 'NoneType' has no len()
+2023-09-15 01:03:20,695:ERROR:Internal Server Error: /ame_client_app/AddProposition
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 64, in AddProposition
+    if len(appearance) == 0:
+TypeError: object of type 'NoneType' has no len()
+2023-09-15 01:12:31,056:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 01:13:43,670:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 01:13:57,052:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 01:14:11,882:INFO:create case>{'message': 'Case added', 'case': 40} status>200
+2023-09-15 01:14:24,483:ERROR:Internal Server Error: /ame_client_app/AddProposition
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 67, in AddProposition
+    if len(appearance) == 0:
+TypeError: object of type 'NoneType' has no len()
+2023-09-15 01:15:46,183:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 01:16:26,686:INFO:/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py changed, reloading.
+2023-09-15 01:16:35,849:INFO:create case>{'message': 'Case added', 'case': 41} status>200
+2023-09-15 01:16:40,199:INFO:41the cat on the matNone12
+2023-09-15 01:16:40,216:ERROR:Internal Server Error: /ame_client_app/AddProposition
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jazzbox35/GitHub/AME_Client/ame_client_project/ame_client_app/views.py", line 68, in AddProposition
+    if len(appearance) == 0:
+TypeError: object of type 'NoneType' has no len()
+2023-09-15 01:19:17,407:INFO:create case>{'message': 'Case added', 'case': 42} status>200
+2023-09-15 01:19:25,949:INFO:42the cat on the matNone12
+2023-09-15 01:19:26,050:INFO:proposition>{'message': 'Internal Server Error'} status>500
+2023-09-15 01:20:28,719:INFO:create case>{'message': 'Case added', 'case': 43} status>200
+2023-09-15 01:20:32,487:INFO:{'case': 43, 'proposition': 'the cat on the mat', 'appearance': None, 'essence': '', 'level': '1'}
+2023-09-15 01:20:32,563:INFO:proposition>{'message': 'Internal Server Error'} status>500
+2023-09-15 01:21:09,176:INFO:create case>{'message': 'Case added', 'case': 44} status>200
+2023-09-15 01:21:12,289:INFO:{'case': 44, 'proposition': 'the cat on the mat', 'appearance': 'appearance', 'essence': '', 'level': '1'}
+2023-09-15 01:21:12,365:INFO:proposition>{'message': 'ERROR: level must be 1, 2 for sys2 but received 1'} status>400
+2023-09-15 01:23:36,163:INFO:create case>{'message': 'Case added', 'case': 45} status>200
+2023-09-15 01:23:38,047:INFO:{'case': 45, 'proposition': 'the cat on the mat', 'appearance': 'the cat', 'essence': '', 'level': '1'}
+2023-09-15 01:23:38,062:INFO:proposition>{'message': 'ERROR: level must be 1, 2 for sys2 but received 1'} status>400
+2023-09-15 01:24:02,409:INFO:create case>{'message': 'Case added', 'case': 46} status>200
+2023-09-15 01:24:09,848:INFO:{'case': 46, 'proposition': 'the cat on the mat', 'appearance': 'the cat', 'essence': '', 'level': '0'}
+2023-09-15 01:24:10,377:INFO:proposition>{'message': 'ERROR: level must be 0, 1, 2 but received 0'} status>400
+2023-09-15 01:26:07,433:INFO:create case>{'message': 'Case added', 'case': 47} status>200
+2023-09-15 01:26:07,449:INFO:create case>{'message': 'Case added', 'case': 48} status>200
+2023-09-15 01:26:15,910:INFO:{'case': 48, 'proposition': 'the cat on the mat', 'appearance': 'the cat', 'essence': '', 'level': '0'}
+2023-09-15 01:26:16,030:INFO:proposition>{'message': 'ERROR: level must be 0, 1, 2 but received 0'} status>400
