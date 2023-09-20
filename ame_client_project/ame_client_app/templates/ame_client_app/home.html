@@ -22,12 +22,17 @@
       fetch(`{% url "CreateNewCase" %}`)
             .then(response => response.json())
             .then(data => {
-              messageBox.innerText = "Server: " +  data['message'] + " #" + data['case'];
+              messageBox.innerText = "Response:" +  data['message'] + " #" + data['case'];
               messageBox.style.color = 'red'
               case_no.value = data['case']
+              prop.value = ""
+              L0Button.checked = true;
+              S1Button.checked = true;
+              appear.value = "";
+              desired.value = "";
             })
             .catch(error => {
-              alert("An error occurred, server may be down");
+              alert("An error occurred, server may be down or invalid request");
             });
     }
 
@@ -35,26 +40,73 @@
       fetch(`{% url "TrainCase" %}?case=${case_no.value}`)
             .then(response => response.json())
             .then(data => {
-              messageBox.innerText = "Server: " +  data['message'];
+              messageBox.innerText = "Response:" +  data['message'];
               messageBox.style.color = 'red'
             })
             .catch(error => {
-              alert("An error occurred, server may be down");
+              alert("An error occurred, server may be down or invalid request");
             });
     }
 
     function ajaxAddProposition(){
       
-      fetch(`{% url "AddProposition" %}?case=${case_no.value}&level=${getSelectedLevel()}&system=${getSelectedSystem()}&proposition=${prop.value}&appearance=${appear.value}`)
+      fetch(`{% url "AddProposition" %}?case=${case_no.value}&level=${getSelectedLevel()}&system=${getSelectedSystem()}&proposition=${prop.value}&appearance=${appear.value}&desired=${desired.value}`)
             .then(response => response.json())
             .then(data => {
-              messageBox.innerText = "Server: " +  data['message'];
+              messageBox.innerText = "Response:" +  data['message'];
               messageBox.style.color = 'red'
             })
             .catch(error => {
-              alert("An error occurred, server may be down");
+              alert("An error occurred, server may be down or invalid request");
             });
     }
+
+    function clear_appearance(){
+        appear.value = ""
+    }
+
+    function clear_desired(){
+        desired.value = ""
+    }
+
+    function clear_proposition(){
+        prop.value = ""
+    }
+
+    function clear_all(){
+      /* case_no.value = "" */
+      prop.value = ""
+      L0Button.checked = true;
+      S1Button.checked = true;
+      appear.value = "";
+      desired.value = "";
+    }
+
+    function ajaxRetractProp() {
+        fetch(`{% url "RetractProposition" %}?case=${case_no.value}`)
+            .then(response => response.json())
+            .then(data => {
+              messageBox.style.color = 'red'
+              messageBox.innerText = "Response:" +  data['message'];
+            })
+            .catch(error => {
+              alert("An error occurred, server may be down or invalid request");
+            });
+            
+          }  
+
+    function ajaxDeliberate() {
+        fetch(`{% url "Deliberate" %}?case=${case_no.value}`)
+            .then(response => response.json())
+            .then(data => {
+              messageBox.style.color = 'red'
+              messageBox.innerText = "Response:" +  data['decision'] + " Judgments:" + data['judgments'];
+            })
+            .catch(error => {
+              alert("An error occurred, server may be down or invalid request");
+            });
+            
+          }  
   </script>
   
   <style>
@@ -77,8 +129,16 @@
         <p>AbsoluteMode Engine Shell</p>
       </div>
     
-    
-    <div id="messageBox"></div>
+
+      <br><br>
+      CALL SERVER>
+      <button id="new_case_button", onclick="ajaxNewCase()">NEW CASE</button>
+      <button id="train_case_button", onclick="ajaxTrainCase()">TRAIN CASE</button>
+      <button id="add_proposition_button", onclick="ajaxAddProposition()">ADD PROPOSITION TO CASE</button>
+      <button id="retract_proposition_button", onclick="ajaxRetractProp()">RETRACT LAST PROPOSITION</button>
+      <button id="deliberate_button", onclick="ajaxDeliberate()">DELIBERATE</button>
+      <br>
+      <div id="messageBox"></div>
   
 </center>
 
@@ -105,7 +165,8 @@
     <input type="text" id="case_no" name="case_no" placeholder="" size="5">
     <p>
     <label for="prop">Proposition:</label><br>
-    <input type="text" id="prop" name="prop" placeholder="Enter proposition"  size="30">
+    <input type="text" id="prop" name="prop" placeholder=""  size="30">
+    <button id="clear_proposition", onclick="clear_proposition()">Clear</button>
     <div class="form-group2" style="display: flex; align-items: center;">
 
       <label>Select one:</label>
@@ -133,19 +194,17 @@
     <p>
     <label for="appear">Appearance terms if L0:</label><br>
     <input type="text" id="appear" name="appear" placeholder="" size="60">
+    <button id="clear_button", onclick="clear_appearance()">Clear</button>
     <p>
-    <label for="Desired">Desired terms in proposition (optional, L1 or L2):</label><br>
-    <input type="text" id="Desired" name="Desired" placeholder="" size="30">
+    <label for="desired">Desired terms in proposition (optional, S2 only!):</label><br>
+    <input type="text" id="desired" name="desired" placeholder="" size="30">
+    <button id="clear_desired", onclick="clear_desired()">Clear</button>
     <p>
+    <button id="clear_all", onclick="clear_all()">Clear All</button>
   </div>
-    <center>
-    <br><br>
-    <button id="new_case_button", onclick="ajaxNewCase()">NEW CASE</button>
-    <button id="train_case_button", onclick="ajaxTrainCase()">TRAIN CASE</button>
-    <button id="add_proposition_button", onclick="ajaxAddProposition()">ADD PROPOSITION TO CASE</button>
-    
-    </center>
     <script>
+    const L0Button = document.getElementById('L0');
+    const S1Button = document.getElementById('S1');
     function getSelectedSystem() {
         const selected = document.querySelector('input[name="S_options"]:checked');
         return selected.value; 

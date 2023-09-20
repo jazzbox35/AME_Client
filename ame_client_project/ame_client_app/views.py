@@ -58,7 +58,8 @@ def AddProposition(request):
     appearance = request.GET.get('appearance')
     level = request.GET.get('level')
     system = request.GET.get('system')
-    #desired = request.GET.get('L0appear')
+    desired = request.GET.get('desired')
+
 
     api_url = 'https://' + AME_NODE + '.agiengine.online/sys' + system + '-proposition'
     headers = {
@@ -70,7 +71,8 @@ def AddProposition(request):
       "proposition" :  proposition,
       "appearance"  :  appearance,
       "essence"     : "",
-      "level"       : level
+      "level"       : int(level),
+      "desired"     :  desired
     }
     logging.info(data)
     try:
@@ -82,7 +84,7 @@ def AddProposition(request):
     return JsonResponse(data)
 
 
-def CreateL3(request):
+def Deliberate(request):
     # Create level 1, system 2 judgment(s) and post to the server
     case = request.GET.get('case')
     api_url = 'https://' + AME_NODE + '.agiengine.online/sys2-realistic'
@@ -102,14 +104,13 @@ def CreateL3(request):
     logging.info("realistic call>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
-def CreateL4(request):
+def RetractProposition(request):
     # Retract the most recent proposition
     case = request.GET.get('case')
     api_url = 'https://' + AME_NODE + '.agiengine.online/retract_that'
     headers = {
           'api-key':  AME_API_KEY
       }
-    #appearance =  request.GET.get('appearance')
     data = {
       "case": int(case),
     }
