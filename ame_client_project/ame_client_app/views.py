@@ -95,7 +95,6 @@ def Deliberate(request):
     data = {
       "case": int(case),
     }
-    
     try:
         response = requests.put(api_url, headers=headers, json=data)
     except:

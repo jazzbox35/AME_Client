@@ -96,6 +96,7 @@
           }  
 
     function ajaxDeliberate() {
+        
         fetch(`{% url "Deliberate" %}?case=${case_no.value}`)
             .then(response => response.json())
             .then(data => {
