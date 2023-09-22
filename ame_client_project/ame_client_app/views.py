@@ -1,4 +1,4 @@
-#   Function:     \This is a Django program for processing all REST transactions on the AME
+#   Function:     This is a Django program for processing all REST transactions on the AME
 #   Input:        User propositions and associated keywords 
 #   Output:       Server evaluation of proposition and submission of a case for training in batch mode.
 
