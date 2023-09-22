@@ -4,7 +4,5 @@ AME_API_KEY = '18574'
 # Enter your partition 
 AME_NODE = 'part2'
 
-# Devise custom logic which will be executed if the user clicks "GENERATE DEFAULT PROPOSITION"
-# This makes it possible for the front end UX to perform basic logic by creating the next proposition.
-#. However the user can still invoke the ame for more complicated (S2) scenarios.
-
+# If you wish to insert custom logic to determine the next level proposition based on the preceding proposition(s),
+# insert your code at the bottom of "function ajaxAddProposition()" which can be found under templates/ame_client_app
