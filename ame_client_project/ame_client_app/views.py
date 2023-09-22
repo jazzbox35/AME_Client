@@ -1,4 +1,4 @@
-#   Function:     This is a Django program for processing all REST transactions on the AME
+#   Function:     \This is a Django program for processing all REST transactions on the AME
 #   Input:        User propositions and associated keywords 
 #   Output:       Server evaluation of proposition and submission of a case for training in batch mode.
 
@@ -39,9 +39,12 @@ def TrainCase(request):
           'api-key':  AME_API_KEY
       }
     #appearance =  request.GET.get('appearance')
-    data = {
-      "case": int(case),
-    }
+    try:
+        data = {
+            "case": int(case),
+        }
+    except:
+        data = {}
     
     try:
         response = requests.put(api_url, headers=headers, json=data)
@@ -66,15 +69,19 @@ def AddProposition(request):
           'api-key':  AME_API_KEY
       }
     
-    data = {
-      "case": int(case),
-      "proposition" :  proposition,
-      "appearance"  :  appearance,
-      "essence"     : "",
-      "level"       : int(level),
-      "desired"     :  desired
-    }
-    logging.info(data)
+    try:
+        data = {
+          "case": int(case),
+          "proposition" :  proposition,
+          "appearance"  :  appearance,
+          "essence"     : "",
+          "level"       : int(level),
+          "desired"     :  desired
+        }
+        logging.info(data)
+    except:
+        data ={}
+
     try:
         response = requests.put(api_url, headers=headers, json=data)
     except:
@@ -91,10 +98,14 @@ def Deliberate(request):
     headers = {
           'api-key':  AME_API_KEY
       }
-    #appearance =  request.GET.get('appearance')
-    data = {
-      "case": int(case),
-    }
+    
+    try:
+        data = {
+          "case": int(case),
+        }
+    except:
+        data = {}
+    
     try:
         response = requests.put(api_url, headers=headers, json=data)
     except:
@@ -110,9 +121,13 @@ def RetractProposition(request):
     headers = {
           'api-key':  AME_API_KEY
       }
-    data = {
-      "case": int(case),
-    }
+
+    try:
+        data = {
+          "case": int(case),
+        }
+    except:
+        data ={}
     
     try:
         response = requests.put(api_url, headers=headers, json=data)
