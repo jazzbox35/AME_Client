@@ -10,3 +10,6 @@ Install:
 3) Issue command: "python manage.py runserver" after you navigate to the project folder.
 4) Enter http://localhost:8000/ame_client_app/ in your browser
 5) In order to work the remote server has to be up. If you get an error contact Mike @ jazzbox35@gmail.com
+
+For custom configuration, see the file: 
+AME_Client/ame_client_project/ame_client_app/config.py
