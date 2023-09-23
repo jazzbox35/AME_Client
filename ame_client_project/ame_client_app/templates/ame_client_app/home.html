@@ -111,7 +111,7 @@
             .then(response => response.json())
             .then(data => {
               messageBox.style.color = 'red'
-              messageBox.innerText = "Response:" +  data['decision'] + " Judgments:" + data['judgments'];
+              messageBox.innerText = "Response:" +  data['decision'] + " Judgments:" + data['judgments'] + data['propositions'];
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
