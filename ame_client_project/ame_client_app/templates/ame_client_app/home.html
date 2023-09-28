@@ -54,20 +54,13 @@
             .then(response => response.json())
             .then(data => {
               messageBox.innerText = "Response:" +  data['message'];
+              propositions_stringify = JSON.stringify(data['propositions'])  // works
+              propositions_parsed = JSON.parse(propositions_stringify) // might work
               messageBox.style.color = 'red'
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
-            });
-
-    // INSERT CODE HERE IF YOU WISH TO CREATE A DEFAULT VALUE FOR THE NEXT PROPOSITION BASED ON THE PROPOSITION JUST SUBMITTED ABOVE.
-    // FOR EXAMPLE IF THE PROPOSITION POSTED ABOVE IS LEVEL 0, SYSTEM 1 (L0 AND S1), AND THE PROPOSITION WAS 'CAR IS MOVING',
-    // AND THE APPEARANCE IS 'FAST', THEN PERHAPS ASSIGN 'CAR DRIVING RECKLESSLY' AS THE DEFAULT LEVEL 1, SYSTEM 1 JUDGMENT.
-    // USE getSelectedSystem() TO DETERMINE S1 OR S2 OF POSTED PROPOSITION. 
-    // USE getSelectedLevel() TO DETERMINE L0, L1, L2 OF POSTED PROPOSITION.
-    // USE appear.value FOR APPEARANCE VALUES OF POSTED PROPOSITION.
-    // ASSIGN RESULT TO prop.value.
-    // 
+            }); 
       
     }
 
@@ -81,6 +74,14 @@
 
     function clear_proposition(){
         prop.value = ""
+    }
+
+    function insert_Q_proposition(){
+        prop.value = "?"
+    }
+
+    function append_ellipsis_proposition(){
+        prop.value = prop.value + '...'
     }
 
     function clear_all(){
@@ -111,7 +112,9 @@
             .then(response => response.json())
             .then(data => {
               messageBox.style.color = 'red'
-              messageBox.innerText = "Response:" +  data['decision'] + " Judgments:" + data['judgments'] + data['propositions'];
+              messageBox.innerText = "Response:" +  data['decision'] + " Judgments:" + data['judgments'];
+              prop_returned = data['propositions'];
+              messageBox.innerText = messageBox.innerText + (typeof prop_returned);
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
@@ -178,6 +181,8 @@
     <label for="prop">Proposition:</label><br>
     <input type="text" id="prop" name="prop" placeholder=""  size="30">
     <button id="clear_proposition", onclick="clear_proposition()">Clear</button>
+    <button id="insert_Q_proposition", onclick="insert_Q_proposition()">Use '?'</button>
+    <button id="append_ellipsis_proposition", onclick="append_ellipsis_proposition()">Append '...'</button>
     <div class="form-group2" style="display: flex; align-items: center;">
 
       <label>Select one:</label>

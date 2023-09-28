@@ -8,7 +8,8 @@ from django.http import HttpResponse, JsonResponse
 import logging
 from ame_client_app.config import *
 
-propositions =[]
+# Create list of submitted propositions held by the UX. 
+propositions = {"proposition":[]}
 
 logging.basicConfig(filename="ame_client_app.log",filemode='a',format='%(asctime)s:%(levelname)s:%(message)s',level=logging.INFO)
 
@@ -28,12 +29,14 @@ def CreateNewCase(request):
       }
     data = {}
     try:
-        propositions =[]
+        propositions ={"proposition":[]}
         response = requests.put(api_url, headers=headers, json=data)
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
-    logging.info("create case>" + str(data) + " status>" + str(response.status_code))
+    # stick the client list of propositions into the json data from the response
+    data['propositions'] = propositions
+    logging.info("CreateNewCase responding to html with>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
 def TrainCase(request):
@@ -57,7 +60,8 @@ def TrainCase(request):
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
-    logging.info("train case>" + str(data) + " status>" + str(response.status_code))
+    data['propositions'] = propositions
+    logging.info("TrainCase responding to html with>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
 def AddProposition(request):
@@ -90,13 +94,25 @@ def AddProposition(request):
     except:
         data ={}
 
-    try:
-        propositions.insert(0,data)
+    # add new proposition to front of client proposition list -- this is only used by the client UX
+    propositions["proposition"].insert(0,data)
+
+    # call the ame
+    try:    
         response = requests.put(api_url, headers=headers, json=data)
+        data = response.json()
     except:
         return HttpResponse("Cannot communicate with AME server")
-    data = response.json()
-    logging.info("proposition>" + str(data) + " status>" + str(response.status_code) + " props list>" + str(propositions))
+    
+    # stick the client list of propositions into the json data from the response
+    data['propositions'] = propositions
+
+    """ INSERT CODE HERE IF YOU WISH TO CREATE A DEFAULT VALUE FOR THE NEXT PROPOSITION BASED ON THE PROPOSITION JUST SUBMITTED ABOVE.
+    FOR EXAMPLE IF THE PROPOSITION POSTED ABOVE IS LEVEL 0, SYSTEM 1 (L0 AND S1), AND THE PROPOSITION WAS 'CAR IS MOVING',
+    AND THE APPEARANCE IS 'FAST', THEN PERHAPS ASSIGN 'CAR DRIVING RECKLESSLY' AS THE DEFAULT LEVEL 1, SYSTEM 1 JUDGMENT.
+     """
+    
+    logging.info("AddProposition responding to html with>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
 
@@ -122,8 +138,7 @@ def Deliberate(request):
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
     data['propositions'] = propositions
-    logging.info("realistic call>" + str(data) + " status>" + str(response.status_code))
-    logging.info("RETURNING>" + str(data))
+    logging.info("Deliberate responding to html with>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
 def RetractProposition(request):
@@ -142,14 +157,19 @@ def RetractProposition(request):
         }
     except:
         data ={}
-    
-    try:
-        # just clip the list of first
-        propositions = propositions[1:]
+
+    # propositions is type {} with entry "proposition" which points to a type []. The list is the propositions submitted by the client.
+    if len(propositions["proposition"]) > 1:
+        propositions["proposition"] = propositions["proposition"][1:]
+    else:
+        propositions["proposition"] = []
+
+    try:            
         response = requests.put(api_url, headers=headers, json=data)
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
-    logging.info("retract that>" + str(data) + " status>" + str(response.status_code) + " props list>" + str(propositions))
+    data['propositions'] = propositions
+    logging.info("RetractProposition responding to html with>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
