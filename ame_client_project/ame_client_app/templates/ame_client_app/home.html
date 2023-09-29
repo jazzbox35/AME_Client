@@ -41,7 +41,8 @@
             .then(response => response.json())
             .then(data => {
               messageBox.innerText = "Response:" +  data['message'];
-              messageBox.style.color = 'red'
+              messageBox.style.color = 'red';
+              display_propositions(JSON.parse(JSON.stringify(data['propositions'])));
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
@@ -53,10 +54,13 @@
       fetch(`{% url "AddProposition" %}?case=${case_no.value}&level=${getSelectedLevel()}&system=${getSelectedSystem()}&proposition=${prop.value}&appearance=${appear.value}&desired=${desired.value}`)
             .then(response => response.json())
             .then(data => {
+              messageBox.style.color = 'red';
               messageBox.innerText = "Response:" +  data['message'];
-              propositions_stringify = JSON.stringify(data['propositions'])  // works
-              propositions_parsed = JSON.parse(propositions_stringify) // might work
-              messageBox.style.color = 'red'
+
+              // display the running list of propositions
+              display_propositions(JSON.parse(JSON.stringify(data['propositions'])));
+              //alert(data2.proposition[0].level)
+              
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
@@ -99,6 +103,7 @@
             .then(data => {
               messageBox.style.color = 'red'
               messageBox.innerText = "Response:" +  data['message'];
+              display_propositions(JSON.parse(JSON.stringify(data['propositions'])));
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
@@ -115,12 +120,33 @@
               messageBox.innerText = "Response:" +  data['decision'] + " Judgments:" + data['judgments'];
               prop_returned = data['propositions'];
               messageBox.innerText = messageBox.innerText + (typeof prop_returned);
+              display_propositions(JSON.parse(JSON.stringify(data['propositions'])));
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
             });
             
           }  
+
+    function display_propositions(json_data){
+        document.querySelector("#propositions-table table").innerHTML = "";
+        //for (let i = 0; i < json_data.proposition.length; i++) {
+        //          alert(json_data.proposition[i].proposition);
+        //      };
+        json_data.proposition.forEach(p => {
+            let row = `
+              <tr>
+                <td>L${p.level}</td>
+                <td>S${p.system}</td>
+                <td>${p.proposition}</td>
+                <td>${p.appearance}</td>
+                <td>${p.desired}</td>
+              </tr>
+              `;
+            document.querySelector("#propositions-table table").insertAdjacentHTML('beforeend', row); 
+        });
+    }
+
   </script>
   
   <style>
@@ -170,10 +196,22 @@
   .form-group2 {
   display: flex;
   align-items: center;
-}
+  }
+
+  #propositions-table {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px; 
+  }
+
+  h3 {
+    margin-top: 25px;
+    font-size: 1.2em;
+  }
 </style>
 
 {% if next_action  == 'display_home' %}
+  
   <div class="form-group">
     <label for="case_no">Case:</label>
     <input type="text" id="case_no" name="case_no" placeholder="" size="5">
@@ -209,7 +247,7 @@
     </div>
     <p>
     <label for="appear">Appearance terms if L0:</label><br>
-    <input type="text" id="appear" name="appear" placeholder="" size="60">
+    <input type="text" id="appear" name="appear" placeholder="" size="40">
     <button id="clear_button", onclick="clear_appearance()">Clear</button>
     <p>
     <label for="desired">Desired terms in proposition (optional, S2 only!):</label><br>
@@ -217,6 +255,15 @@
     <button id="clear_desired", onclick="clear_desired()">Clear</button>
     <p>
     <button id="clear_all", onclick="clear_all()">Clear All</button>
+    <h3>Case Proposition List:</h3>
+    <div id="propositions-table" style="max-height: 100px; overflow-y: auto;">
+      <table>
+        <tr>
+          <th>empty -- add propositions</th>
+        </tr>
+      </table>
+    </div>
+
   </div>
     <script>
     const L0Button = document.getElementById('L0');
