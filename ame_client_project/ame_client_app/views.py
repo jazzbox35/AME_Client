@@ -90,16 +90,18 @@ def AddProposition(request):
           "desired"     :  desired,
           "system"      : system
         }
-        logging.info(data)
     except:
         data ={}
-
-    # add new proposition to front of client proposition list -- this is only used by the client UX
-    propositions["proposition"].insert(0,data)
 
     # call the ame
     try:    
         response = requests.put(api_url, headers=headers, json=data)
+        if type(response.status_code) == int and response.status_code == 200:
+            # add new proposition to front of client proposition list -- this is only used by the client UX
+            propositions["proposition"].insert(0,data)
+            logging.info("added to propositions>" + str(data))
+        else:
+            logging.info("NOT adding to propositions due to return code>" + str(data))
         data = response.json()
     except:
         return HttpResponse("Cannot communicate with AME server")
@@ -115,10 +117,19 @@ def AddProposition(request):
     logging.info("AddProposition responding to html with>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
-
 def Deliberate(request):
     global propositions
-    # Create level 1, system 2 judgment(s) and post to the server
+    
+    # don't call the ame unless the most recent proposition (main idea) is System 2!
+    if propositions["proposition"][0]["system"] == '2':
+        pass
+    else:
+        # The ame should reject these but this will suffice
+        data = {}
+        data['decision'] = ["ERROR -- Last proposition must be System 2 and Level 1 or Level 2."]
+        data['judgments'] = [[]]
+        return JsonResponse(data)
+ 
     case = request.GET.get('case')
     api_url = 'https://' + AME_NODE + '.agiengine.online/sys2-realistic'
     headers = {
@@ -158,14 +169,15 @@ def RetractProposition(request):
     except:
         data ={}
 
-    # propositions is type {} with entry "proposition" which points to a type []. The list is the propositions submitted by the client.
-    if len(propositions["proposition"]) > 1:
-        propositions["proposition"] = propositions["proposition"][1:]
-    else:
-        propositions["proposition"] = []
-
     try:            
         response = requests.put(api_url, headers=headers, json=data)
+        if type(response.status_code) == int and response.status_code == 200:
+            # propositions is type {} with entry "proposition" which points to a type []. 
+            # The list is the propositions submitted by the client.
+            if len(propositions["proposition"]) > 1:
+                propositions["proposition"] = propositions["proposition"][1:]
+            else:
+                propositions["proposition"] = []
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()

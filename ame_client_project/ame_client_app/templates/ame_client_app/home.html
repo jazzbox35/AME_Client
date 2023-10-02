@@ -9,7 +9,8 @@
       bottom: 0;
       left: 0;
       border: 1px solid #ccc;
-      padding: 10px;
+      padding: 5px;
+      max-height: 50px;
       background: lightgreen;
       text-align: left; /* Left-justify the text */
       width: 100%; /* Make it span the entire width */
@@ -30,6 +31,7 @@
               S1Button.checked = true;
               appear.value = "";
               desired.value = "";
+              document.querySelector("#propositions-table table").innerHTML = "";
             })
             .catch(error => {
               alert("An error occurred, server may be down or invalid request");
@@ -131,7 +133,6 @@
         if (ame_judgments.length > 0) {
           judgments_sw = true;
           judgments_idx = 0
-          alert(ame_judgments)
         } 
         else {
           judgments_sw = false;
@@ -319,7 +320,7 @@
     <p>
        This generic client will submit all possible REST transactions to the AME.
        Please see the documentation section <a href="https://absolutemode.agiengine.online">here</a> for details.
-       <br><br>
+      <br>
        S1 = System 1, S2 = System 2, L0 = Level 0, L1 = Level 1, L2 = Level 2       
     </p>
   </div>
