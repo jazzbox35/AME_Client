@@ -148,7 +148,7 @@
               display_propositions(JSON.parse(JSON.stringify(data['propositions'])),data['judgments']);
             })
             .catch(error => {
-              alert("An error occurred, server may be down or invalid request");
+              alert("Cannot deliberate. Invalid case structure or server down");
             });
             
           }  
@@ -317,11 +317,11 @@
     <button id="clear_desired", onclick="clear_desired()">Clear</button>
     <p>
     <button id="clear_all", onclick="clear_all()">Clear All</button>
-    <h3>Case Proposition List:</h3>
+    <!-- <h3>Case Proposition List:</h3> -->
     <div id="propositions-table" style="max-height: 100px; overflow-y: auto; font-size: 12px;">
       <table>
         <tr>
-          <th>empty -- add propositions</th>
+          <th>Case propositions list is empty -- add propositions</th>
         </tr>
       </table>
     </div>
