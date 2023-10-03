@@ -103,7 +103,21 @@
         fetch(`{% url "RetractProposition" %}?case=${case_no.value}`)
             .then(response => response.json())
             .then(data => {
-              messageBox.style.color = 'red'
+              // initialize data to just retracted proposition in case user wants to edit:
+              json_data = JSON.parse(JSON.stringify(data['retracted']));
+              if (json_data.proposition.length > 0){
+                prop.value = json_data.proposition;
+                appear.value = json_data.appearance;
+                desired.value = json_data.desired;
+                if (json_data.system == 1){
+                  S1Button.checked = true;
+                  }
+                else {
+                  S2Button.checked = true;
+                }
+                }
+
+              messageBox.style.color = 'red';
               messageBox.innerText = "Response:" +  data['message'];
               display_propositions(JSON.parse(JSON.stringify(data['propositions'])));
             })

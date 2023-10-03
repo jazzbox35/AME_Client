@@ -174,14 +174,19 @@ def RetractProposition(request):
         if type(response.status_code) == int and response.status_code == 200:
             # propositions is type {} with entry "proposition" which points to a type []. 
             # The list is the propositions submitted by the client.
+            # initialize the online fields to the deleted proposition since user may desire to edit:
+            retracted_prop = propositions["proposition"][0]
             if len(propositions["proposition"]) > 1:
                 propositions["proposition"] = propositions["proposition"][1:]
             else:
                 propositions["proposition"] = []
+        else:
+            data['retracted'] = {}        
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
     data['propositions'] = propositions
+    data['retracted'] = retracted_prop
     logging.info("RetractProposition responding to html with>" + str(data) + " status>" + str(response.status_code))
     return JsonResponse(data)
 
