@@ -109,11 +109,22 @@
                 prop.value = json_data.proposition;
                 appear.value = json_data.appearance;
                 desired.value = json_data.desired;
+                // reset S1/S2
                 if (json_data.system == 1){
-                  S1Button.checked = true;
-                  }
+                    S1Button.checked = true;
+                }
                 else {
-                  S2Button.checked = true;
+                    S2Button.checked = true;
+                } 
+                // reset Level
+                if (json_data.level == 0){
+                    L0Button.checked = true;  
+                }
+                else if (json_data.level == 1){
+                    L1Button.checked = true;  
+                }
+                else if (json_data.level == 2){
+                    L2Button.checked = true;  
                 }
                 }
 
@@ -122,7 +133,7 @@
               display_propositions(JSON.parse(JSON.stringify(data['propositions'])));
             })
             .catch(error => {
-              alert("An error occurred, server may be down or invalid request");
+              alert("Attempt to retract with no propositions or server may be down");
             });
             
           }  
@@ -307,7 +318,7 @@
     <p>
     <button id="clear_all", onclick="clear_all()">Clear All</button>
     <h3>Case Proposition List:</h3>
-    <div id="propositions-table" style="max-height: 100px; overflow-y: auto;">
+    <div id="propositions-table" style="max-height: 100px; overflow-y: auto; font-size: 12px;">
       <table>
         <tr>
           <th>empty -- add propositions</th>
@@ -318,7 +329,10 @@
   </div>
     <script>
     const L0Button = document.getElementById('L0');
+    const L1Button = document.getElementById('L1');
+    const L2Button = document.getElementById('L2');
     const S1Button = document.getElementById('S1');
+    const S2Button = document.getElementById('S2');
     function getSelectedSystem() {
         const selected = document.querySelector('input[name="S_options"]:checked');
         return selected.value; 

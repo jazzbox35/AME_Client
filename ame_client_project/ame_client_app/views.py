@@ -169,6 +169,7 @@ def RetractProposition(request):
     except:
         data ={}
 
+    retracted_prop = {}
     try:            
         response = requests.put(api_url, headers=headers, json=data)
         if type(response.status_code) == int and response.status_code == 200:
@@ -180,8 +181,6 @@ def RetractProposition(request):
                 propositions["proposition"] = propositions["proposition"][1:]
             else:
                 propositions["proposition"] = []
-        else:
-            data['retracted'] = {}        
     except:
         return HttpResponse("Cannot communicate with AME server")
     data = response.json()
