@@ -23,7 +23,11 @@ def index(request):
 def CreateNewCase(request):
     global propositions
     
-    api_url = 'https://' + AME_NODE + '.agiengine.online/createcase'
+    if LOOPBACK_SWITCH:
+        api_url = LOOPBACK_TESTING_URL + '/createcase'
+    else:
+        api_url = 'https://' + AME_NODE + '.agiengine.online/createcase'
+    
     headers = {
           'api-key':  AME_API_KEY
       }
@@ -43,7 +47,10 @@ def TrainCase(request):
     # Mark case for training -- but no further updates allowed
     global propositions
     case = request.GET.get('case')
-    api_url = 'https://' + AME_NODE + '.agiengine.online/traincase'
+    if LOOPBACK_SWITCH:
+        api_url = LOOPBACK_TESTING_URL + '/traincase'
+    else:
+        api_url = 'https://' + AME_NODE + '.agiengine.online/traincase'
     headers = {
           'api-key':  AME_API_KEY
       }
@@ -74,8 +81,11 @@ def AddProposition(request):
     system = request.GET.get('system')
     desired = request.GET.get('desired')
 
+    if LOOPBACK_SWITCH:
+        api_url = LOOPBACK_TESTING_URL + '/sys' + system + '-proposition'
+    else:
+        api_url = 'https://' + AME_NODE + '.agiengine.online/sys' + system + '-proposition'
 
-    api_url = 'https://' + AME_NODE + '.agiengine.online/sys' + system + '-proposition'
     headers = {
           'api-key':  AME_API_KEY
       }
@@ -131,7 +141,12 @@ def Deliberate(request):
         return JsonResponse(data)
  
     case = request.GET.get('case')
-    api_url = 'https://' + AME_NODE + '.agiengine.online/sys2-realistic'
+    
+    if LOOPBACK_SWITCH:
+        api_url = LOOPBACK_TESTING_URL + '/sys2-realistic'
+    else:
+        api_url = 'https://' + AME_NODE + '.agiengine.online/sys2-realistic'
+
     headers = {
           'api-key':  AME_API_KEY
       }
@@ -157,7 +172,11 @@ def RetractProposition(request):
     global propositions
 
     case = request.GET.get('case')
-    api_url = 'https://' + AME_NODE + '.agiengine.online/retract_that'
+    
+    if LOOPBACK_SWITCH:
+        api_url = LOOPBACK_TESTING_URL + '/retract_that'
+    else:
+        api_url = 'https://' + AME_NODE + '.agiengine.online/retract_that'
     headers = {
           'api-key':  AME_API_KEY
       }
