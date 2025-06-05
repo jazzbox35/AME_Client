@@ -131,7 +131,7 @@ def Deliberate(request):
     global propositions
     
     # don't call the ame unless the most recent proposition (main idea) is System 2!
-    if propositions["proposition"][0]["system"] == '2':
+    if len(propositions["proposition"]) > 0 and propositions["proposition"][0]["system"] == '2':
         pass
     else:
         # The ame should reject these but this will suffice
